@@ -1,0 +1,117 @@
+% 
+% Annual Cognitive Science Conference
+% Sample LaTeX Two-Page Summary -- Proceedings Format
+% 
+
+% Original : Ashwin Ram (ashwin@cc.gatech.edu)       04/01/1994
+% Modified : Johanna Moore (jmoore@cs.pitt.edu)      03/17/1995
+% Modified : David Noelle (noelle@ucsd.edu)          03/15/1996
+% Modified : Pat Langley (langley@cs.stanford.edu)   01/26/1997
+% Latex2e corrections by Ramin Charles Nakisa        01/28/1997 
+% Modified : Tina Eliassi-Rad (eliassi@cs.wisc.edu)  01/31/1998
+% Modified : Trisha Yannuzzi (trisha@ircs.upenn.edu) 12/28/1999 (in process)
+% Modified : Mary Ellen Foster (M.E.Foster@ed.ac.uk) 12/11/2000
+% Modified : Ken Forbus                              01/23/2004
+% Modified : Eli M. Silk (esilk@pitt.edu)            05/24/2005
+% Modified : Niels Taatgen (taatgen@cmu.edu)         10/24/2006
+% Modified : David Noelle (dnoelle@ucmerced.edu)     11/19/2014
+
+%% Change "letterpaper" in the following line to "a4paper" if you must.
+
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{cogsci}
+\usepackage{pslatex}
+\usepackage{apacite}
+%\usepackage{hyperref}
+
+\title{Tutorial: Bayesian Data Analysis using Probabilistic Programs}
+ 
+\author{{\large \bf Michael Henry Tessler (mhtessler@stanford.edu)}, {\large \bf Noah D. Goodman (ngoodman@stanford.edu)}  \\
+  Department of Psychology, Stanford University
+  }
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+....
+
+\begin{quote}
+\small
+\textbf{Keywords:} 
+bayesian data analysis; bayesian cognitive modeling; probabilistic programming
+\end{quote}
+
+\end{abstract}
+
+
+
+
+
+\section{Significance}
+
+Have you ever collected data and then not known how to analyze it? 
+Looked for a difference between conditions but couldn't boil your data down to a single metric? 
+The cycle of research has many stages, from experimental design to data collection and writing the results. 
+Data analysis is the one stage where young researchers often struggle. 
+Analyzing experimental data is an open field of possibilities. 
+There is no \emph{one way} to get from data to results. 
+Classical tests (t-tests, linear and logistic models) are extremely useful for many cases, but what should you do when the linear model doesn't suffice? 
+You could google for your specific question. 
+If you're lucky, some statistician or psychologist will have asked your very same question of very similar data and you can plug and play. 
+But what if the search turns up nothing?
+
+Bayesian data analysis (BDA) is a general-purpose data analysis approach for making explicit hypotheses about where the data came from (e.g., the hypothesis that data from 2 experimental conditions came from two different distributions). 
+This is a fundamentally different approach from the classical statistical framework --- Null Hypothesis Significance Testing (NHST) --- in which the assumptions about how the data were generated are often opaque and force the scientist to adopt assumptions they may or may not be aware of. 
+Building the right model for one's data enhances the credibility of the findings and increases the probability of replication. 
+
+%\section{Why is this of interest to CogSci?}
+
+\section{Structure}
+
+This one-day hands-on tutorial will introduce participants to Bayesian Data Analysis, providing a set of tools and techniques that will allow researchers to conduct BDA on their own. 
+We will use the probabilistic programming language WebPPL \cite{dippl}, which is freely available to run in the web browser or on the command line, as well as currently via the programming language R. 
+
+\begin{enumerate}
+\item Introduction to probabilistic programming
+	\subitem Theory: Basics of probability, conditional probability
+	\subitem Practical: Introduction to WebPPL, creating arbitrary random variables with programs
+\item Simple Bayesian data analysis
+	\subitem Theory: Bayes rule 
+	\subitem Practical: Posterior inference in WebPPL, comparing models
+\item Joint inference models
+	\subitem Theory: 
+	\subitem Practical:
+\item Analyzing cognitive models
+	\subitem Theory:
+	\subitem Practical:
+\item Optimal Experiment Design
+	\subitem Theory:
+	\subitem Practical:
+\end{enumerate}
+
+Each participant will need a laptop but no additional materials are required for this tutorial. 
+
+\section{Organizer Credentials}
+
+Tessler has designed and taught classes on Bayesian Data Analysis and Bayesian cognitive modeling in graduate-level university classes\footnote{
+\url{https://web.stanford.edu/class/psych201s/}
+} and summer schools around the world\footnote{
+e.g., \url{http://stanford.edu/~mtessler/short-courses/2017-computational-pragmatics/}}. 
+Tessler has also developed an R package for interfacing with WebPPL \footnote{\url{https://github.com/mhtess/rwebppl}}.
+Goodman developed the probabilisitic programming language (PPL) WebPPL, as as well as two other PPLS: Church \cite{church} and Pyro\footnote{\url{http://pyro.ai}}.
+He has taught courses on Bayesian cognitive modeling.
+
+\bibliographystyle{apacite}
+
+\setlength{\bibleftmargin}{.125in}
+\setlength{\bibindent}{-\bibleftmargin}
+
+\bibliography{tutorial}
+
+
+\end{document}
