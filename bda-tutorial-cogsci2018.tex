@@ -25,6 +25,9 @@
 \usepackage{apacite}
 %\usepackage{hyperref}
 
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 \title{Tutorial: Bayesian Data Analysis using Probabilistic Programs}
  
 \author{{\large \bf Michael Henry Tessler (mhtessler@stanford.edu)}, {\large \bf Noah D. Goodman (ngoodman@stanford.edu)}  \\
@@ -38,8 +41,7 @@
 
 \begin{abstract}
 
-....
-
+Drawing inferences from observable data is a fundamental part of science, but how should we do it?
 \begin{quote}
 \small
 \textbf{Keywords:} 
@@ -54,10 +56,7 @@ bayesian data analysis; bayesian cognitive modeling; probabilistic programming
 
 \section{Significance}
 
-Have you ever collected data and then not known how to analyze it? 
-Looked for a difference between conditions but couldn't boil your data down to a single metric? 
-The cycle of research has many stages, from experimental design to data collection and writing the results. 
-Data analysis is the one stage where young researchers often struggle. 
+Drawing inferences from observable data is a fundamental part of science, but how should we do it?
 Analyzing experimental data is an open field of possibilities. 
 There is no \emph{one way} to get from data to results. 
 Classical tests (t-tests, linear and logistic models) are extremely useful for many cases, but what should you do when the linear model doesn't suffice? 
@@ -65,11 +64,35 @@ You could google for your specific question.
 If you're lucky, some statistician or psychologist will have asked your very same question of very similar data and you can plug and play. 
 But what if the search turns up nothing?
 
-Bayesian data analysis (BDA) is a general-purpose data analysis approach for making explicit hypotheses about where the data came from (e.g., the hypothesis that data from 2 experimental conditions came from two different distributions). 
-This is a fundamentally different approach from the classical statistical framework --- Null Hypothesis Significance Testing (NHST) --- in which the assumptions about how the data were generated are often opaque and force the scientist to adopt assumptions they may or may not be aware of. 
-Building the right model for one's data enhances the credibility of the findings and increases the probability of replication. 
+Probability theory is the ``logic of science'' \cite{Jaynes2003} and Bayesian data analysis (BDA) is a general-purpose, flexible data analytic approach for drawing inferences about hypotheses from data.
+BDA is fundamentally different from the classical statistical framework --- Null Hypothesis Significance Testing (NHST) --- in which the scientist is often forced to adopt opaque assumptions about how the data were generated, leading to illicit inferences.
+This opacity as well as the inflexibility of NHST is part responsible for the reproducibility crisis in psychology and related fields. 
+BDA provides a principled alternative, one in which intuitive conclusions are drawn from intuitive, explicit assumptions.
 
+For many years, BDA was a specialist's methodology because it required advanced computational skills to implement and fit Bayesian models.
+No longer: With the advent of \emph{probabilistic programming languages} (PPLs) and recent breakthroughs in algorithms for posterior inference, large suites of data analysis problems can be approached from the Bayesian perspective. 
+Furthermore, formalizing hypotheses in simple Bayesian models is a first step towards formalizing one's theory in a model. 
+A formal model provides a stricter test of one's hypothesis by making explicit the relevant assumptions in one's theory. 
+Finally, by formalizing hypotheses along with explicit alternative hypotheses, one can estimate the \emph{expected information gain} from a set of experiments and decide among that set the \emph{optimal experiment} to distinguish one's hypotheses. 
+
+This tutorial will introduce the participant to Bayesian data analysis using probabilistic programs. 
+By learning how to create simple Bayesian models in a lightweight probabilistic programming language, participants will more easily grasp the specification of the \emph{generative process} of the data to the inferences drawn from observed data.
+PPLs abstract away nuisance details and allow one to build models from scratch in few lines of code. 
+This tool enhances the transparency of a model, which in turn allows the scientist to reason through the model and revising it. 
 %\section{Why is this of interest to CogSci?}
+
+
+\section{Learning Goals}
+
+By the end of the tutorial, participants will be able to 
+
+\begin{enumerate}
+\tightlist
+\item \textbf{Build} Bayesian statistical models for simple and complex problems using a probabilistic programming language 
+\item \textbf{Interpret} the various components of such a model in terms of one's scientific hypotheses 
+\item \textbf{Relate} Bayesian model to more orthodox statistical tests (e.g., a linear model) 
+\item \textbf{Defend} a particular model specification (priors, likelihood) in a way that other cognitive scientists will understand
+\end{enumerate}
 
 \section{Structure}
 
