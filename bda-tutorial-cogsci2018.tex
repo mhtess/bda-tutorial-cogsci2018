@@ -28,7 +28,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-\title{Tutorial: Bayesian Data Analysis using Probabilistic Programs}
+\title{Statistics as pottery: Bayesian Data Analysis using Probabilistic Programs \\(Tutorial)}
  
 \author{{\large \bf Michael Henry Tessler (mhtessler@stanford.edu)}, {\large \bf Noah D. Goodman (ngoodman@stanford.edu)}  \\
   Department of Psychology, Stanford University
@@ -56,15 +56,21 @@ bayesian data analysis; bayesian cognitive modeling; probabilistic programming
 
 \section{Significance}
 
-Drawing inferences from observable data is a fundamental part of science, but how should we do it?
-Analyzing experimental data is an open field of possibilities. 
-There is no \emph{one way} to get from data to results. 
-Classical tests (t-tests, linear and logistic models) are extremely useful for many cases, but what should you do when the linear model doesn't suffice? 
-You could google for your specific question. 
-If you're lucky, some statistician or psychologist will have asked your very same question of very similar data and you can plug and play. 
-But what if the search turns up nothing?
+Learning statistics is like learning pottery. 
+With pottery, you can learn how to make different shapes (e.g., a bowl, a vase, a spoon) without understanding general principles. 
+Another way is to learn the basic strokes of forming pottery (e.g., how to mold a curved surface, a flat surface, long pointy things). 
+In this course, we are going to learn the basic strokes of statistics, and compose those strokes to make shapes you've seen before (e.g., a linear model), some shapes you've probably never seen before, and develop ideas how you would make new shapes if you needed to. 
+We won't learn what tests apply to what data types but instead foster the ability to reason through data analysis. 
+We will do this through the lens of Bayesian statistics, though the basic ideas will aid your understanding of classical (frequentist) statistics as well.
 
-Probability theory is the ``logic of science'' \cite{Jaynes2003} and Bayesian data analysis (BDA) is a general-purpose, flexible data analytic approach for drawing inferences about hypotheses from data.
+%Analyzing experimental data is an open field of possibilities. 
+%There is no \emph{one way} to get from data to results. 
+%Classical tests (t-tests, linear and logistic models) are extremely useful for many cases, but what should you do when the linear model doesn't suffice? 
+%You could google for your specific question. 
+%If you're lucky, some statistician or psychologist will have asked your very same question of very similar data and you can plug and play. 
+%But what if the search turns up nothing?
+
+Probability theory is the ``logic of science'' \cite{jaynes2003probability} and Bayesian data analysis (BDA) is a general-purpose, flexible data analytic approach for drawing inferences about hypotheses from data.
 BDA is fundamentally different from the classical statistical framework --- Null Hypothesis Significance Testing (NHST) --- in which the scientist is often forced to adopt opaque assumptions about how the data were generated, leading to illicit inferences.
 This opacity as well as the inflexibility of NHST is part responsible for the reproducibility crisis in psychology and related fields. 
 BDA provides a principled alternative, one in which intuitive conclusions are drawn from intuitive, explicit assumptions.
