@@ -28,7 +28,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-\title{Statistics as pottery: Bayesian Data Analysis using Probabilistic Programs \\(Tutorial)}
+\title{Statistics as Pottery: Bayesian Data Analysis using Probabilistic Programs \\(Tutorial)}
  
 \author{{\large \bf Michael Henry Tessler (mhtessler@stanford.edu)}, {\large \bf Noah D. Goodman (ngoodman@stanford.edu)}  \\
   Department of Psychology, Stanford University
@@ -72,19 +72,27 @@ We will do this through the lens of Bayesian statistics, though the basic ideas 
 
 Probability theory is the ``logic of science'' \cite{jaynes2003probability} and Bayesian data analysis (BDA) is a general-purpose, flexible data analytic approach for drawing inferences about hypotheses from data.
 BDA is fundamentally different from the classical statistical framework --- Null Hypothesis Significance Testing (NHST) --- in which the scientist is often forced to adopt opaque assumptions about how the data were generated, leading to illicit inferences.
-This opacity as well as the inflexibility of NHST is part responsible for the reproducibility crisis in psychology and related fields. 
+This opacity as well as the inflexibility of NHST can be partially credited for the reproducibility crisis in psychology and related fields. 
 BDA provides a principled alternative, one in which intuitive conclusions are drawn from intuitive, explicit assumptions.
 
 For many years, BDA was a specialist's methodology because it required advanced computational skills to implement and fit Bayesian models.
 No longer: With the advent of \emph{probabilistic programming languages} (PPLs) and recent breakthroughs in algorithms for posterior inference, large suites of data analysis problems can be approached from the Bayesian perspective. 
 Furthermore, formalizing hypotheses in simple Bayesian models is a first step towards formalizing one's theory in a model. 
 A formal model provides a stricter test of one's hypothesis by making explicit the relevant assumptions in one's theory. 
-Finally, by formalizing hypotheses along with explicit alternative hypotheses, one can estimate the \emph{expected information gain} from a set of experiments and decide among that set the \emph{optimal experiment} to distinguish one's hypotheses. 
+Finally, by formalizing hypotheses and making explicit a set of possible experiments or experimental conditions one could run, one can automate the search for \emph{good experiments} with use of an \emph{optimal experiment design} (OED) system.
 
 This tutorial will introduce the participant to Bayesian data analysis using probabilistic programs. 
-By learning how to create simple Bayesian models in a lightweight probabilistic programming language, participants will more easily grasp the specification of the \emph{generative process} of the data to the inferences drawn from observed data.
+By learning how to create simple Bayesian models in a lightweight probabilistic programming language, participants will more easily grasp the relationship between the \emph{generative process} of the data and the inferences drawn from observed data.
 PPLs abstract away nuisance details and allow one to build models from scratch in few lines of code. 
 This tool enhances the transparency of a model, which in turn allows the scientist to reason through the model and revising it. 
+
+This tutorial will be of broad interest to the Cognitive Science community because it touches upon a variety of distinct but related topics in the empirical disciplines. 
+Foremost, it is a tutorial in data analysis and modeling assuming no background knowledge of either Bayesian statistics or probabilisitic programming (though some programming experience will be helpful). 
+Rather than specific statistic tests, we teach the basic strokes of statistics (representing the generative process of data by composing probability distributions), which are transferable to whatever domain of inquiry or data the scientist engages with. 
+Second, we draw the connection between analyzing simple data-analytic models (e.g., regression models) and Bayesian cognitive models, the analysis of which can both be addressed from the Bayesian data analytic perspective.
+Finally, we share recent breakthroughs in the incorporation of \emph{Optimal Experiment Design} to situations where the scientists has made explicit their hypothesis in model. 
+Throughout we use the same probabilistic programming language, and show participants how to incorporate this kind of modeling into their everyday scientific workflow. 
+
 %\section{Why is this of interest to CogSci?}
 
 
@@ -103,37 +111,42 @@ By the end of the tutorial, participants will be able to
 \section{Structure}
 
 This one-day hands-on tutorial will introduce participants to Bayesian Data Analysis, providing a set of tools and techniques that will allow researchers to conduct BDA on their own. 
-We will use the probabilistic programming language WebPPL \cite{dippl}, which is freely available to run in the web browser or on the command line, as well as currently via the programming language R. 
+We will use the probabilistic programming language WebPPL \cite{dippl}, which is freely available to run in the web browser or on the command line, as well as via the programming language R. 
 
 \begin{enumerate}
+\tightlist
 \item Introduction to probabilistic programming
 	\subitem Theory: Basics of probability, conditional probability
-	\subitem Practical: Introduction to WebPPL, creating arbitrary random variables with programs
+	\subitem Practical: Introduction to WebPPL and RWebPPL, creating arbitrary random variables with programs
 \item Simple Bayesian data analysis
 	\subitem Theory: Bayes rule 
 	\subitem Practical: Posterior inference in WebPPL, comparing models
 \item Joint inference models
-	\subitem Theory: 
-	\subitem Practical:
+	\subitem Theory: Representing the generative process of data by a series of random choices
+	\subitem Practical: Modeling data contamination, participant-level parameters
 \item Analyzing cognitive models
-	\subitem Theory:
-	\subitem Practical:
+	\subitem Theory: Cognitive models as a more constrained kind of model
+	\subitem Practical: Learning about the parameters of a cognitive model
 \item Optimal Experiment Design
-	\subitem Theory:
-	\subitem Practical:
+	\subitem Theory: Representing multiple hypotheses as models 
+	\subitem Practical: Running \texttt{webppl-oed} on models
 \end{enumerate}
 
 Each participant will need a laptop but no additional materials are required for this tutorial. 
 
 \section{Organizer Credentials}
 
-Tessler has designed and taught classes on Bayesian Data Analysis and Bayesian cognitive modeling in graduate-level university classes\footnote{
+Tessler has written tutorials and lectured on Bayesian Data Analysis and Bayesian cognitive modeling in graduate-level university classes\footnote{\url{https://probmods.org/chapters/14-bayesian-data-analysis.html}}
+\footnote{\url{http://forestdb.org/models/bayesian-data-analysis.html}}.
+In addition, Tessler has designed and taught his own 10-week graduate-level course on Bayesian Data Analysis at Stanford \footnote{
 \url{https://web.stanford.edu/class/psych201s/}
-} and summer schools around the world\footnote{
-e.g., \url{http://stanford.edu/~mtessler/short-courses/2017-computational-pragmatics/}}. 
+} and 1- to 2-week summer schools around the world\footnote{
+e.g., \url{http://stanford.edu/~mtessler/short-courses/2017-computational-pragmatics/}}.
+Tessler's research integrates Bayesian Data Analysis with Bayesian Cognitive Modeling and has co-authored a paper on Optimal Experiment Design using probabilistic programs \cite{OuyangTLG16}.  
 Tessler has also developed an R package for interfacing with WebPPL \footnote{\url{https://github.com/mhtess/rwebppl}}.
 Goodman developed the probabilisitic programming language (PPL) WebPPL, as as well as two other PPLS: Church \cite{church} and Pyro\footnote{\url{http://pyro.ai}}.
-He has taught courses on Bayesian cognitive modeling.
+He teaches courses on probabilistic models of cognition.
+
 
 \bibliographystyle{apacite}
 
