@@ -23,7 +23,11 @@
 \usepackage{cogsci}
 \usepackage{pslatex}
 \usepackage{apacite}
+\usepackage{color}
+
 %\usepackage{hyperref}
+
+\newcommand{\ndg}[1]{\textcolor{green}{[ndg: #1]}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -60,9 +64,11 @@ Learning statistics is like learning pottery.
 With pottery, you can learn how to make different shapes (e.g., a bowl, a vase, a spoon) without understanding general principles. 
 Another way is to learn the basic strokes of forming pottery (e.g., how to mold a curved surface, a flat surface, long pointy things). 
 In this course, we are going to learn the basic strokes of statistics by building generative models of data. 
-We'll compose these strokes to make shapes you've seen before (e.g., a linear model), some shapes you've probably never seen before, and develop ideas how you would make new shapes if you needed to. 
+We'll compose these strokes to make shapes you've seen before (e.g., a linear model), some shapes you've probably never seen before (\ndg{eg...}), and develop ideas how you would make new shapes if you needed to. 
 We won't learn what tests apply to what data types but instead foster the ability to reason through data analysis. 
 We will do this through the lens of Bayesian statistics, though the basic ideas will aid your understanding of classical (frequentist) statistics as well.
+
+\ndg{i like the above and below paragraphs, but the transition is a bit jarring.}
 
 %Analyzing experimental data is an open field of possibilities. 
 %There is no \emph{one way} to get from data to results. 
@@ -81,23 +87,27 @@ Bayesian data analysis (BDA) is a general-purpose, flexible data analytic approa
 BDA provides a principled alternative to NHST: Intuitive conclusions are drawn from intuitive, explicit assumptions.
 Major journals have made public their openness to alternatives to NHST \cite<e.g.,>{lindsay2015replication}, and Bayesian techniques are precisely that alternative.
 
+\ndg{ need to say a little more here about what PPLs are, and why they reduce the need for statistical expertise.}
 For many years, BDA was a specialist's methodology because it required advanced computational skills to implement and fit Bayesian models.
-No longer: With the advent of \emph{probabilistic programming languages} (PPLs) and recent breakthroughs in algorithms for posterior inference, large suites of data analysis problems can be approached from the Bayesian perspective. 
+No longer: With the advent of \emph{probabilistic programming languages} (PPLs) and recent breakthroughs in algorithms for posterior inference, large suites of data analysis problems can be approached from the Bayesian perspective without detailed expertise in statistical algorithms. 
+This tutorial will introduce the participant to Bayesian data analysis using probabilistic programs as way to declare models and perform inference. 
+By learning how to create simple Bayesian models in a lightweight PPL, participants will more easily grasp the relationship between the \emph{generative process} of the data and the inferences drawn from observed data.
+PPLs abstract away nuisance details and allow one to build models from scratch in few lines of code; they further provide black-box inference algorithms that can be used with little expertise.
+The PPL approach enhances the transparency of a model, which in turn allows the scientist to reason through the model and revising it. 
+
+\ndg{be a little more explicit here about how doing BDA in a full PPL (not stan) allows BDA of bayesian cognitive models, and why that's good.}
 Furthermore, formalizing hypotheses in simple Bayesian models is a first step towards formalizing one's theory in a model. 
 A formal model provides a stricter test of one's hypothesis by making explicit the relevant assumptions in one's theory. 
-Finally, by formalizing hypotheses and making explicit a set of possible experiments or experimental conditions one could run, one can automate the search for \emph{good experiments} with use of an \emph{optimal experiment design} (OED) system.
+Finally, by formalizing hypotheses and making explicit a set of possible experiments or experimental conditions one could run, one can automate the search for \emph{good experiments} with use of an \emph{optimal experiment design} (OED) system. \ndg{say a little more about OED ad how it's basically free from the PPL BDA setup.}
 
-This tutorial will introduce the participant to Bayesian data analysis using probabilistic programs. 
-By learning how to create simple Bayesian models in a lightweight probabilistic programming language, participants will more easily grasp the relationship between the \emph{generative process} of the data and the inferences drawn from observed data.
-PPLs abstract away nuisance details and allow one to build models from scratch in few lines of code. 
-This tool enhances the transparency of a model, which in turn allows the scientist to reason through the model and revising it. 
 
 This tutorial will be of broad interest to the Cognitive Science community because it touches upon a variety of distinct but related topics in the empirical disciplines. 
-Foremost, it is a tutorial in data analysis and modeling assuming no background knowledge of either Bayesian statistics or probabilisitic programming (though some programming experience will be helpful). 
+Foremost, it is a tutorial in modern data analysis and modeling assuming no background knowledge of either Bayesian statistics or probabilisitic programming. 
 Rather than specific statistic tests, we teach the basic strokes of statistics (representing the generative process of data by composing probability distributions), which are transferable to whatever domain of inquiry or data the scientist engages with. 
-Second, we draw the connection between analyzing simple data-analytic models (e.g., regression models) and Bayesian cognitive models, the analysis of which can both be addressed from the Bayesian data analytic perspective.
-Finally, we share recent breakthroughs in the incorporation of \emph{Optimal Experiment Design} to situations where the scientists has made explicit their hypothesis in model. 
-Throughout we use the same probabilistic programming language, and show participants how to incorporate this kind of modeling into their everyday scientific workflow. 
+Second, we draw the connection between simple data-analytic models (e.g., regression models) and Bayesian cognitive models, fostering an integrative theoretical view of data analysis and modeling.
+%, the analysis of which can both be addressed from the Bayesian data analytic perspective.
+Finally, we demonstrate the power of explicit data analysis and modeling by showing how \emph{Optimal Experiment Design} comes for free once a Bayesian data analysis has been chosen.
+Throughout, we show participants how to incorporate this kind of modeling into their everyday scientific workflow. 
 
 %\section{Why is this of interest to CogSci?}
 
@@ -117,7 +127,8 @@ By the end of the tutorial, participants will be able to
 \section{Structure}
 
 This one-day hands-on tutorial will introduce participants to Bayesian Data Analysis, providing a set of tools and techniques that will allow researchers to conduct BDA on their own. 
-We will use the probabilistic programming language WebPPL \cite{dippl}, which is freely available to run in the web browser or on the command line, as well as via the programming language R. 
+We will use the probabilistic programming language WebPPL \cite{dippl}, which is freely available to run in the web browser or on the command line, as well as via the programming language R.  
+\ndg{say we will teach from interactive course notes that will be posted on the web?}
 
 \begin{enumerate}
 \tightlist
@@ -146,6 +157,7 @@ Each participant will need a laptop but no additional materials are required for
 
 \section{Organizer Credentials}
 
+\ndg{revise this. be more explicit about where you taught. begin by saying we are experts in bayesian cognitive modeling and have used BDA extensively in our own research. then say that i've taught bayesian modeling a lot and co-authored probmods which is used all over the place. then say all the great stuff about you having taught bda at a bunch of places.}
 Tessler has written tutorials and lectured on Bayesian Data Analysis and Bayesian cognitive modeling in graduate-level university classes\footnote{\url{https://probmods.org/chapters/14-bayesian-data-analysis.html}}
 \footnote{\url{http://forestdb.org/models/bayesian-data-analysis.html}}.
 In addition, Tessler has designed and taught his own 10-week graduate-level course on Bayesian Data Analysis at Stanford \footnote{
