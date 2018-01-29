@@ -59,7 +59,8 @@ bayesian data analysis; bayesian cognitive modeling; probabilistic programming
 Learning statistics is like learning pottery. 
 With pottery, you can learn how to make different shapes (e.g., a bowl, a vase, a spoon) without understanding general principles. 
 Another way is to learn the basic strokes of forming pottery (e.g., how to mold a curved surface, a flat surface, long pointy things). 
-In this course, we are going to learn the basic strokes of statistics, and compose those strokes to make shapes you've seen before (e.g., a linear model), some shapes you've probably never seen before, and develop ideas how you would make new shapes if you needed to. 
+In this course, we are going to learn the basic strokes of statistics by building generative models of data. 
+We'll compose these strokes to make shapes you've seen before (e.g., a linear model), some shapes you've probably never seen before, and develop ideas how you would make new shapes if you needed to. 
 We won't learn what tests apply to what data types but instead foster the ability to reason through data analysis. 
 We will do this through the lens of Bayesian statistics, though the basic ideas will aid your understanding of classical (frequentist) statistics as well.
 
@@ -69,11 +70,16 @@ We will do this through the lens of Bayesian statistics, though the basic ideas 
 %You could google for your specific question. 
 %If you're lucky, some statistician or psychologist will have asked your very same question of very similar data and you can plug and play. 
 %But what if the search turns up nothing?
+Drawing inferences from data is the purview of statistics, and probability theory can be seen as the ``logic of science'' \cite{jaynes2003probability}.
+Recent years and commentators have elucidated the shortcomings of the ``classical'' statistical framework --- Null Hypothesis Significance Testing (NHST). 
+It is opaque and rife with assumptions the scientist is often forced to adopt.
+The inflexibility of NHST is partially credited for the reproducibility crises in psychology and related fields. 
 
-Probability theory is the ``logic of science'' \cite{jaynes2003probability} and Bayesian data analysis (BDA) is a general-purpose, flexible data analytic approach for drawing inferences about hypotheses from data.
-BDA is fundamentally different from the classical statistical framework --- Null Hypothesis Significance Testing (NHST) --- in which the scientist is often forced to adopt opaque assumptions about how the data were generated, leading to illicit inferences.
-This opacity as well as the inflexibility of NHST can be partially credited for the reproducibility crisis in psychology and related fields. 
-BDA provides a principled alternative, one in which intuitive conclusions are drawn from intuitive, explicit assumptions.
+Bayesian data analysis (BDA) is a general-purpose, flexible data analytic approach for drawing inferences about hypotheses from data.
+%BDA is fundamentally different from the classical statistical framework --- Null Hypothesis Significance Testing (NHST) --- in which the scientist is often forced to adopt opaque assumptions about how the data were generated, leading to illicit inferences.
+%This opacity as well as the inflexibility of NHST can be partially credited for the reproducibility crisis in psychology and related fields. 
+BDA provides a principled alternative to NHST: Intuitive conclusions are drawn from intuitive, explicit assumptions.
+Major journals have made public their openness to alternatives to NHST \cite<e.g.,>{lindsay2015replication}, and Bayesian techniques are precisely that alternative.
 
 For many years, BDA was a specialist's methodology because it required advanced computational skills to implement and fit Bayesian models.
 No longer: With the advent of \emph{probabilistic programming languages} (PPLs) and recent breakthroughs in algorithms for posterior inference, large suites of data analysis problems can be approached from the Bayesian perspective. 
