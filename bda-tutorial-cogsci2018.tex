@@ -93,7 +93,7 @@
 %Drawing inferences from observable data is a fundamental part of science, but how should we do it?
 Probability theory is the ``logic of science'' \cite{jaynes2003probability} and Bayesian data analysis (BDA) is the glue that brings that logic to data.
 BDA is a general, flexible alternative to standard statistical approaches (e.g., NHST) that provides the scientist with clarity and ease to address their personal scientific questions. 
-Doing BDA in a probabilisitic programming language (PPL) affords several additional advantages:  a compositional approach to writing models, separation of model specification from algorithmic implementation (a la \lstinline{lm()} in R), and continuity from articulating data analytic models to Bayesian cognitive models. 
+Doing BDA in a probabilistic programming language (PPL) affords several additional advantages:  a compositional approach to writing models, separation of model specification from algorithmic implementation (a la \lstinline{lm()} in R), and continuity from articulating data analytic models to Bayesian cognitive models. 
 Furthermore, specifying one's model and data analysis in a PPL allows you to search for ``optimal experiments'' for free. 
 This tutorial will walk the participant through the basics of BDA to state-of-the-art applications, using an interactive online web-book and tools for integrating BDA into their existing workflow. 
 \begin{quote}
@@ -114,7 +114,7 @@ Learning statistics is like learning pottery.
 With pottery, you can learn how to make different shapes (e.g., a bowl, a vase, a spoon) without understanding general principles. 
 Another way is to learn the basic strokes of forming pottery (e.g., how to mold a curved surface, a flat surface, long pointy things). 
 In this course, we are going to learn the basic strokes of statistics by building generative models of data. 
-We'll compose these strokes to make shapes you've seen before (e.g., a linear model), some shapes you've probably never seen before (e.g., building a single model of a two-alternative forced-choice task and a three-alternative task), and explore how you would make new shapes if you needed to. 
+We'll compose these strokes to make shapes you've seen before (e.g., a linear model), some shapes you've probably never seen before (e.g., a single model of a two-alternative forced-choice task and a three-alternative task), and explore how you would make new shapes if you needed to. 
 We won't learn what tests apply to what data types but instead foster the ability to reason through data analysis. 
 We will do this through the lens of Bayesian statistics, though the basic ideas will aid your understanding of classical (frequentist) statistics as well.
 
@@ -129,7 +129,7 @@ We will do this through the lens of Bayesian statistics, though the basic ideas 
 
 Bayesian data analysis (BDA) is a general-purpose, flexible data analytic approach for drawing inferences about hypotheses from data.
 Recent years have elucidated the shortcomings of the ``classical'' statistical framework---Null Hypothesis Significance Testing (NHST). 
-It is opaque and rife with assumptions the scientist is often forced to adopt, which is partially credited for the reproducibility crises in psychology and related fields. 
+NHST is opaque and rife with assumptions the scientist is often forced to adopt, which is partially credited for the reproducibility crises in psychology and related fields. 
 BDA provides a principled alternative to NHST: Intuitive conclusions are drawn from intuitive, explicit assumptions.
 Major journals have made public their openness to alternatives to NHST \cite<e.g.,>{lindsay2015replication}, and Bayesian techniques are precisely that alternative.
 
@@ -143,19 +143,36 @@ For many years, BDA was a specialist's methodology because it required advanced 
 No longer: \emph{Probabilistic programming languages} (PPLs) abstract away nuisance details and allow one to build models from scratch in few lines of code; they further provide black-box inference algorithms that can be used with little expertise.
 PPLs are programming languages have special operators for representing probabilities and randomness. 
 Crucially, they provide an abstraction barrier between \emph{model specification} (\emph{what} we wish to compute) and the algorithm for returning the result (\emph{how} we try to compute it), analogous to how the function \lstinline{lm()} (in the programming language R) runs a linear model: The user simply specifies the functional form of the regression model (e.g., additive, interactive,...) and, under the hood, computation is done to return the answer.
-PPLs are more than just a single model, however, they are full-blown programming languages that allow you to build \emph{any} model you might need for your data analysis at hand.
-The PPL approach enhances the transparency of a model, which in turn allows the scientist to reason through and revise the model. 
+The PPL approach enhances the transparency of a model, which in turn allows the scientist to reason through and revise the model more easily. 
+
+PPLs are more than just a single model, however, they are full-blown programming languages that allow you to build \emph{any} model you might need.
+Strange data types or experiment designs that violate assumptions of classical tests are no problem; all you have to do is be explicit about how you believe the data were generated (e.g., in the simplest case, that two experimental conditions gave rise to potentially different distributions of responses).
+If your hypothesis can be made more precise, PPLs provide an avenue to formalize it in a cognitive model. 
+Have a cognitive model in hand but can't think of a way to precisely integrate it with the raw behavioral data? 
+You could build a simple regression model to take your predictors (predictions of the cognitive model) into the appropriate data space.
+All of this can be achieved without leaving the same language.
+This kind of open-ended model specification cannot be achieved using probabilistic libraries or restricted probabilistic languages (e.g, STAN, BUGS). 
+
+State-of-the-art data analytic technologies are to be found in PPLs. 
+For example, with a formal model in hand, one can automatically search for \emph{good experiments} to run (i.e., experiments that, regardless of their outcome, strongly update your beliefs about a scientific question) using ``optimal experiment design'' (OED).
+OED searches from a space of possible experiments for those that distinguish a scientist's alternatives models.
+OED has been implemented in the PPL that this course will use \cite{ouyangArxivOED}, and we will introduce the system at the end of the course.
+
+%You can even use BDA to integrate a cognitive model and join it with other 
+%For example, if your data is  concrete way of mapping that cognitive model to the actual behavioral data collected: You can build a cognitive model in a PPL and then write a regression model to take your predictors (predictions of the cognitive model) into the appropriate data space, all without leaving the same language.
+%
+%Full probabilistic programming languages, like the kind used in this course, allow for open-ended model specificathave significant advantages over libraries and more restricted probabilistic languages (e.g., STAN, BUGS), which constrain the kinds of models the user can write (e.g., no recursion) or the ways in which one can write them. 
+%
 
 %$By learning how to create simple Bayesian models in a lightweight PPL, participants will more easily grasp the relationship between the \emph{generative process} of the data and the inferences drawn from observed data.
 
 
-Full probabilistic programming languages, like the kind used in this course, have significant advantages over libraries and more restricted probabilisitic languages (e.g., STAN, BUGS), which put strong constraints on the kinds of models the user can write (e.g., no recursion). 
-Full PPLs allow for open-ended model specification.
-The same language can be used to build rich Bayesian cognitive models, and you can even analyze those cognitive models using BDA, all without leaving the same language.
-Finally, by formalizing hypotheses in cognitive models and making explicit a set of possible experiments or experimental conditions one could run, one can automate the search for \emph{good experiments} (i.e., experiments that strongly update our beliefs about a scientific question) with use of an \emph{optimal experiment design} (OED) system.
-The search for optimal experiments can be operationalized using a Bayesian model comparison approach: We look for experiments that (regardless of the outcome) are highly informative for distinguishing models. 
-Once a user has articulated a model or set of models and their BDA approach (e.g., model comparison), OED can be utilized without any further specification. 
-Indeed, OED has been implemented in the probabilistic programming language that this course will use \cite{ouyangArxivOED}, and we will introduce the topic at the end of the course.
+%; all that is required is for the user to articulate a model or set of models and describe their BDA approach (e.g., model comparison) and OED comes for free.
+
+% can declare a set of experiments or experimental conditions are considering running and use the PPL to 
+%The search for optimal experiments can be 
+%Once a user has articulated a model or set of models and their BDA approach (e.g., model comparison), OED can be utilized without any further specification \cite{ouyangArxivOED}, and we will introduce the topic at the end of the course.
+%Indeed, OED has been implemented in the probabilistic programming language that this course will use \cite{ouyangArxivOED}, and we will introduce the topic at the end of the course.
 
 
 %This grants the scientist more complete understanding of their models by learning about the model parameters in a way that represents uncertainty about our knowledge of the parameters and provides a principled way of doing model comparison, automatically taking into account model complexity by something known as Bayes' Occams' Razor.
@@ -171,8 +188,8 @@ Indeed, OED has been implemented in the probabilistic programming language that 
 
 
 This tutorial will be of broad interest to the Cognitive Science community because it touches upon a variety of distinct but related topics in the empirical disciplines. 
-Foremost, it is a tutorial in modern data analysis and modeling, assuming no background knowledge of either Bayesian statistics or probabilisitic programming. 
-By learning how to create simple Bayesian models in a probabilistic programming language, participants will more easily grasp the relationship between the \emph{generative process} of the data and the inferences drawn from observed data.
+Foremost, it is a tutorial in modern data analysis and modeling, assuming no background knowledge of either Bayesian statistics or probabilistic programming. 
+By learning how to create simple Bayesian models in a PPL, participants will more easily grasp the relationship between the \emph{generative process} of the data and the inferences drawn from observed data.
 %Rather than specific statistic tests, we teach the basic strokes of statistics (representing the generative process of data by composing probability distributions), which are transferable to whatever domain of inquiry or data the scientist engages with.
 Second, we draw the connection between simple data-analytic models (e.g., regression models) and Bayesian cognitive models, fostering an integrative theoretical view of data analysis and modeling.
 %, the analysis of which can both be addressed from the Bayesian data analytic perspective.
@@ -193,9 +210,9 @@ By the end of the tutorial, participants will be able to
 \section{Structure}
 
 This one-day hands-on tutorial will introduce participants to Bayesian Data Analysis, providing a set of tools and techniques that will allow researchers to conduct BDA on their own. 
-We will use the probabilistic programming language WebPPL \cite{dippl}, which is freely available to run in the web browser or on the command line, as well as via the programming language R.\footnote{
+We will use the probabilistic programming language WebPPL \cite{dippl}, which is freely available to run in the web browser or on the command line, as well as via the programming language R,\footnote{
 \url{https://github.com/mhtess/rwebppl}
-}
+} to examine data sets from behavioral experiments.
 The course will be taught from interactive course notes that will be posted on the web. 
 A schematic website can be found at \url{https://mhtess.github.io/bdappl/}
 
@@ -217,7 +234,7 @@ A schematic website can be found at \url{https://mhtess.github.io/bdappl/}
 \item Joint inference models
 	\begin{itemize*}
 	\item Modeling data contamination
-	\item Building regression models from scratch 
+	\item Building custom regression models from scratch 
 	\item Hierarchical modeling  / participant-level parameters
 	\end{itemize*}
 \item Analyzing cognitive models
@@ -235,15 +252,19 @@ A schematic website can be found at \url{https://mhtess.github.io/bdappl/}
 Each participant will need a laptop but no additional materials are required for this tutorial. 
 
 \section{Organizer Credentials}
+
 Tessler and Goodman are experts in Bayesian cognitive modeling and use BDA extensively in their own research. 
-Goodman has taught Bayesian modeling for roughly a decade and co-authored \texttt{probmods.org}, a highly accessible interactive web-book, now in its 2nd edition, that is used for teaching Bayesian modeling at universities and institutes around the world \cite{probmods2}. 
-Tessler co-authored the chapter on Bayesian Data Analysis that is used in the probmods book\footnote{\url{https://probmods.org/chapters/14-bayesian-data-analysis.html}}, and has lectured on Bayesian Data Analysis and Bayesian cognitive modeling in Goodman's graduate-level class at Stanford.
-In addition, Tessler has designed and taught a 10-week graduate-level course on Bayesian Data Analysis at Stanford\footnote{
-\url{https://web.stanford.edu/class/psych201s/}}.
-Tessler has co-taught 1- to 2-week courses on Bayesian Data Analysis, Bayesian language modeling, and probabilistic programming at the  European Summer School for Logic, Language, and Information (ESSLLI), the Fall School for Computational Linguistics (Germany), and the Probabilistic Programming and Machine Learning Summer School (PPAML), and has been invited to teach a one-week course on these topics at ESSLLI in 2018.\footnote{\url{http://stanford.edu/~mtessler/short-courses/2017-computational-pragmatics/}}
-Tessler has co-authored an interactive web-book in the style of probmods.org, specifically for language modeling \cite{problang}.
-Goodman developed the probabilisitic programming language WebPPL, as as well as two other PPLs: Church \cite{church} and Pyro.
-Tessler also developed an R package for interfacing with WebPPL .
+Tessler is a 5th year PhD student (\emph{expected graduation June 2018}) who has designed and taught a 10-week graduate-level course on Bayesian Data Analysis at Stanford,\footnote{
+\url{https://web.stanford.edu/class/psych201s/}} 1- to 2-week courses on Bayesian Data Analysis and probabilistic programming at the European Summer School for Logic, Language, and Information (ESSLLI), the Fall School for Computational Linguistics (German Linguistics Society), the Probabilistic Programming and Machine Learning Summer School (PPAML), and has been invited to teach a one-week course on these topics at ESSLLI in 2018.\footnote{\url{http://stanford.edu/~mtessler/short-courses/2017-computational-pragmatics/}}
+He has co-authored an interactive web-book for probabilistic modeling of language \cite{problang}, a chapter on Bayesian Data Analysis,\footnote{\url{https://probmods.org/chapters/14-bayesian-data-analysis.html}} and an R package for interfacing with WebPPL.
+
+Goodman is an Associate Professor in the Departments of Psychology and Computer Science at Stanford. 
+He has taught Bayesian modeling for roughly a decade and co-authored \texttt{probmods.org}, a highly accessible interactive web-book, now in its 2nd edition, that is used for teaching Bayesian modeling at universities and institutes around the world \cite{probmods2}. 
+Goodman developed the probabilistic programming language WebPPL, as well as two other PPLs: Church \cite{church} and Pyro.
+
+%Tessler co-authored the chapter on Bayesian Data Analysis that is used in the probmods book\footnote{\url{https://probmods.org/chapters/14-bayesian-data-analysis.html}}, and has lectured on Bayesian Data Analysis and Bayesian cognitive modeling in Goodman's graduate-level class at Stanford.
+%In addition, Tessler has 
+%Tessler has co-taught 1- to 2-week courses on Bayesian Data Analysis, Bayesian language modeling, and probabilistic programming at the  European Summer School for Logic, Language, and Information (ESSLLI), the Fall School for Computational Linguistics (Germany), and the Probabilistic Programming and Machine Learning Summer School (PPAML), and has been invited to teach a one-week course on these topics at ESSLLI in 2018.\footnote{\url{http://stanford.edu/~mtessler/short-courses/2017-computational-pragmatics/}}
 
 
 \bibliographystyle{apacite}
